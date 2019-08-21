@@ -24,16 +24,13 @@
       }
 
       section {
-        height: 300vh;
-      /*   width: 1200vh; */
-        border: 1px solid red;
+        margin-bottom: 80vh;
       }
 
-      .sticky-div {
+      section > .title {
         position: sticky;
         position: -webkit-sticky;
         top: 20px;
-        border: 1px solid green;
         left: 20px;
         width: 250px;
         box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2);
@@ -42,6 +39,10 @@
         padding: 20px;
         font-size: 20px;
         text-align: left;
+      }
+
+      .progress {
+        height: 300vh;
       }
 
       #progress {
@@ -124,21 +125,21 @@
         });
 
         // Add 3D buildings and trees of Boston
-        // Layer.fromPortalItem({
-        //   portalItem: {
-        //     id: "2d913b3b8caf4f3d87be84ff19d77ac7"
-        //   }
-        // }).then(function(layer) {
-        //   map.add(layer);
-        // });
+        Layer.fromPortalItem({
+          portalItem: {
+            id: "2d913b3b8caf4f3d87be84ff19d77ac7"
+          }
+        }).then(function(layer) {
+          map.add(layer);
+        });
 
-        // Layer.fromPortalItem({
-        //   portalItem: {
-        //     id: "e1c77e6d3809412f8755faaf810520df"
-        //   }
-        // }).then(function(layer) {
-        //   map.add(layer);
-        // });
+        Layer.fromPortalItem({
+          portalItem: {
+            id: "e1c77e6d3809412f8755faaf810520df"
+          }
+        }).then(function(layer) {
+          map.add(layer);
+        });
 
         var view = new SceneView({
           container: "viewDiv",
@@ -257,18 +258,23 @@
     <div id="viewDiv"></div>
     <section style="height: 100vh; "></section>
 
-    <div class="sticky-div">Path</div>
-    <section id="pathSection"></section>
-    <section style="height: 20vh; "></section>
+    <!-- Path section -->
+    <section>
+      <div class="title">Path</div>
+      <div class="progress" id="pathSection"></div>
+    </section>
 
 
-    <div class="sticky-div">Camera</div>
-    <section id="cameraSection"></section>
+    <section>
+      <div class="title">Camera</div>
+      <div class="progress" id="cameraSection"></div>
+    </section>
 
-    <section style="height: 20vh; "></section>
 
-    <div class="sticky-div">Daylight</div>
-    <section id="daylightSection"></section>
+    <section>
+      <div class="title">Daylight</div>
+      <div class="progress" id="daylightSection"></div>
+    </section>
 
   </body>
 
