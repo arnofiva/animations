@@ -26,6 +26,22 @@
       section {
         height: 300vh;
       /*   width: 1200vh; */
+        border: 1px solid red;
+      }
+
+      .sticky-div {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 20px;
+        border: 1px solid green;
+        left: 20px;
+        width: 250px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #ffffff;
+        padding: 20px;
+        font-size: 20px;
+        text-align: left;
       }
 
       #progress {
@@ -108,21 +124,21 @@
         });
 
         // Add 3D buildings and trees of Boston
-        Layer.fromPortalItem({
-          portalItem: {
-            id: "2d913b3b8caf4f3d87be84ff19d77ac7"
-          }
-        }).then(function(layer) {
-          map.add(layer);
-        });
+        // Layer.fromPortalItem({
+        //   portalItem: {
+        //     id: "2d913b3b8caf4f3d87be84ff19d77ac7"
+        //   }
+        // }).then(function(layer) {
+        //   map.add(layer);
+        // });
 
-        Layer.fromPortalItem({
-          portalItem: {
-            id: "e1c77e6d3809412f8755faaf810520df"
-          }
-        }).then(function(layer) {
-          map.add(layer);
-        });
+        // Layer.fromPortalItem({
+        //   portalItem: {
+        //     id: "e1c77e6d3809412f8755faaf810520df"
+        //   }
+        // }).then(function(layer) {
+        //   map.add(layer);
+        // });
 
         var view = new SceneView({
           container: "viewDiv",
@@ -240,12 +256,20 @@
   <body>
     <div id="viewDiv"></div>
     <section style="height: 100vh; "></section>
-    <section id="pathSection">Path</section>
+
+    <div class="sticky-div">Path</div>
+    <section id="pathSection"></section>
     <section style="height: 20vh; "></section>
-    <section id="cameraSection">Camera</section>
+
+
+    <div class="sticky-div">Camera</div>
+    <section id="cameraSection"></section>
+
     <section style="height: 20vh; "></section>
-    <section id="daylightSection">Daylight</section>
-    <div id="progress">Scrolling progress: 0%</div>
+
+    <div class="sticky-div">Daylight</div>
+    <section id="daylightSection"></section>
+
   </body>
 
 </html>
