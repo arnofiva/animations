@@ -5,6 +5,7 @@ import Polyline = require("esri/geometry/Polyline");
 import * as Graphic from "esri/Graphic";
 import * as FeatureLayer from "esri/layers/FeatureLayer";
 import * as GeoJSONLayer from "esri/layers/GeoJSONLayer";
+import Field = require("esri/layers/support/Field");
 import * as jsonUtils from "esri/renderers/support/jsonUtils";
 
 import PolylineSections = require("./support/PolylineSections");
@@ -27,18 +28,26 @@ const createAnimationLayer = (layer: FeatureLayer) => {
     elevationInfo = elevationInfo.clone();
   }
 
+  const fields = [
+    new Field({
+      name: "OBJECTID",
+      type: "oid"
+    }),
+    new Field({
+      name: LINE_OBJECT_ID_FIELD,
+      type: "long"
+    })
+  ];
+
+  layer.fields.forEach((field) => {
+    if (field.type !== "oid" && field.name !== "OBJECTID" && field.name !== LINE_OBJECT_ID_FIELD) {
+      fields.push(field);
+    }
+  });
+
   return new FeatureLayer({
-    definitionExpression: layer.definitionExpression,
     elevationInfo,
-    fields: [
-      {
-        name: "OBJECTID",
-        type: "oid"
-      },
-      {
-        name: LINE_OBJECT_ID_FIELD,
-        type: "long"
-      }],
+    fields,
     geometryType: "polyline",
     labelingInfo: layer.labelingInfo ? layer.labelingInfo.map((info) => info.clone()) : undefined as any,
     labelsVisible: layer.labelsVisible,
